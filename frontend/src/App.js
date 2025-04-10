@@ -1,4 +1,5 @@
 import "./style.css";
+import "./App.css"; // <-- Import this too so both styles are included
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -8,7 +9,7 @@ import Results from "./pages/Results";
 function App() {
   return (
     <Router>
-      <div className="page-wrapper"> {/* 👈 Background image wrapper */}
+      <div className="page-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loading" element={<Loading />} />

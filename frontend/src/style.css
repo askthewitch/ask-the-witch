@@ -124,49 +124,37 @@ body {
     overflow: hidden;
   }
   
-  .page-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/Users/thomashughes/Desktop/ask-the-witch/frontend/public/images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    pointer-events: none;
-  }
-  
-  .main-content {
+    .main-content {
     position: relative;
     z-index: 1;
   }
 
   .layout-bg {
+    background-color: #8663AA;
+    background-size: cover;
+    background-position: center;
     position: relative;
     min-height: 100vh;
-    background-color: #8663AA;
-    overflow: hidden;
+    width: 100%;
   }
   
   .layout-overlay {
-    content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/Users/thomashughes/Desktop/ask-the-witch/frontend/public/images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Soft overlay */
+    z-index: 1;
   }
   
   .layout-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
+  
