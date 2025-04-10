@@ -1,0 +1,53 @@
+.App {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #8663AA;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  input {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 0px solid #d3c1ec; /* a lighter purple border */
+    outline: none;
+    animation: borderPulse 2s infinite ease-in-out;
+    box-shadow: 0 0 10px rgba(243, 240, 250, 0.3); /* soft glow */
+}
+
+@keyframes borderPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(243, 240, 250, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(243, 240, 250, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(243, 240, 250, 0.3);
+  }
+}
+
+  .site-title {
+    font-family: 'Griffy', cursive;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+    letter-spacing: 2px;
+    color: #f3f0fa; /* Soft off-white with a hint of warmth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* subtle drop shadow */
+    margin-bottom: 1.5rem; /* Adds space below the title */
+  }
+  
+  form {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
