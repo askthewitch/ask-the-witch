@@ -11,7 +11,10 @@
       }
     ],
     "routes": [
-      { "src": "/api/send-email", "dest": "backend/index.js" },
+      { "src": "/api/send-email", "dest": "/api/send-email" },
       { "src": "/(.*)", "dest": "/frontend/public/$1" }
+    ],
+    "rewrites": [
+      { "source": "/api/send-email", "destination": "/api/send-email" }
     ]
   }
