@@ -6,7 +6,7 @@ import "../style.css";
 const serverUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
-    : "https://askthewitch.com";
+    : "https://askthewitch.com/api";
 
 function Results() {
   const location = useLocation();
