@@ -17,7 +17,7 @@ function Home() {
   return (
     <Layout>
       <div className="container">
-        <h1 className="title">Ask the Witch...</h1>
+        <h1 className="title">AsktheWitch.com</h1>
         <p className="subtitle">
           She knows the AI you need — tell her your idea and watch the magic ✨
         </p>

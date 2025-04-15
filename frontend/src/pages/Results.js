@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../style.css";
 
-// Dynamically set backend URL for dev vs production
+// Updated serverUrl for local vs production
 const serverUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:5000"
-    : "https://your-backend.vercel.app"; // 🔁 Replace with your actual deployed backend URL
+    ? "http://localhost:3000"
+    : "https://askthewitch.com";
 
 function Results() {
   const location = useLocation();
@@ -72,7 +72,7 @@ function Results() {
 
     try {
       setEmailStatus("sending");
-      const response = await fetch(`${serverUrl}/send-email`, {
+      const response = await fetch(`${serverUrl}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -132,27 +132,27 @@ function Results() {
         <div className="floating-summary-box">
           <h3 className="floating-title">✨ Save this summary:</h3>
           <div className="floating-summary-buttons">
-  {!emailSent ? (
-    <>
-      <input
-        className="email-input"
-        type="email"
-        placeholder="Email to yourself"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button className="cta" onClick={handleEmailSend}>
-        📩 Send to Email
-      </button>
-    </>
-  ) : (
-    <p style={{ color: "limegreen" }}>✅ Sent!</p>
-  )}
-  <button className="cta">💻 Download Summary Now</button>
-  {emailStatus === "error" && (
-    <p style={{ color: "red" }}>⚠️ Something went wrong. Try again?</p>
-  )}
-</div>
+            {!emailSent ? (
+              <>
+                <input
+                  className="email-input"
+                  type="email"
+                  placeholder="Email to yourself"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button className="cta" onClick={handleEmailSend}>
+                  📩 Send to Email
+                </button>
+              </>
+            ) : (
+              <p style={{ color: "limegreen" }}>✅ Sent!</p>
+            )}
+            <button className="cta">💻 Download Summary Now</button>
+            {emailStatus === "error" && (
+              <p style={{ color: "red" }}>⚠️ Something went wrong. Try again?</p>
+            )}
+          </div>
         </div>
       </div>
     </Layout>
