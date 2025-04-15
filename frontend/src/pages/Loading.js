@@ -21,7 +21,7 @@ function Loading() {
         <img
           src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
           alt="Loading Witch"
-          style={{ width: "200px", marginTop: "20px" }}
+          style={{ width: "400px", marginTop: "20px" }}
         />
       </div>
     </Layout>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../style.css";
-import Layout from "../components/Layout"; // make sure this path is correct
+import Layout from "../components/Layout";
 
 function Home() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Home() {
   return (
     <Layout>
       <div className="container">
-        <h1 className="title">Ask the Witch</h1>
+        <h1 className="title">Ask the Witch...</h1>
         <p className="subtitle">
           She knows the AI you need — tell her your idea and watch the magic ✨
         </p>
@@ -33,7 +33,7 @@ function Home() {
           <input
             type="text"
             className="input"
-            placeholder="Enter your question"
+            placeholder="Enter your idea or question here"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
@@ -42,7 +42,7 @@ function Home() {
           </button>
         </form>
 
-        <footer>© askthewitch.com 2025</footer>
+        <footer>© askthewitch.com 2025 ✨</footer>
       </div>
     </Layout>
   );
