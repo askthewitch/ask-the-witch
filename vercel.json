@@ -2,22 +2,12 @@
     "version": 2,
     "builds": [
       {
-        "src": "backend/index.js",
-        "use": "@vercel/node"
-      },
-      {
         "src": "frontend/package.json",
-        "use": "@vercel/react-app"
+        "use": "@vercel/next" // Or "@vercel/react-app" if you're not using Next.js
       }
     ],
     "routes": [
-      { "src": "/api/send-email", "dest": "backend/index.js" },
+      { "src": "/api/send-email", "dest": "/api/send-email" },
       { "src": "/(.*)", "dest": "/frontend/public/$1" }
-    ],
-    "functions": {
-      "api/send-email": {
-        "handler": "backend/index.js",
-        "runtime": "nodejs18.x" // Or your preferred Node.js runtime on Vercel
-      }
-    }
+    ]
   }
