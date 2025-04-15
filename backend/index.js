@@ -17,7 +17,6 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -31,7 +30,7 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-app.post("/api/send-email", async (req, res) => { // IMPORTANT: Route is now /api/send-email
+app.post("/", async (req, res) => { // IMPORTANT: Route is now "/" within the function
   const { to, subject, html } = req.body;
 
   try {
@@ -49,10 +48,6 @@ app.post("/api/send-email", async (req, res) => { // IMPORTANT: Route is now /ap
   }
 });
 
-// ✅ Test route
-app.get("/api/", (req, res) => { // IMPORTANT: Test route is now /api/
-  res.send("Ask the Witch backend is working! 🧙‍♀️");
-});
-
-// ✅ Export the app as the handler (for Vercel)
-module.exports = app;
+module.exports = async (req, res) => {
+  await app(req, res);
+};

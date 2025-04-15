@@ -13,5 +13,11 @@
     "routes": [
       { "src": "/api/send-email", "dest": "backend/index.js" },
       { "src": "/(.*)", "dest": "/frontend/public/$1" }
-    ]
+    ],
+    "functions": {
+      "api/send-email": {
+        "handler": "backend/index.js",
+        "runtime": "nodejs18.x" // Or your preferred Node.js runtime on Vercel
+      }
+    }
   }
