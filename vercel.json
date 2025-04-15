@@ -11,14 +11,7 @@
       }
     ],
     "routes": [
-      { "src": "/api/send-email", "dest": "/api/send-email" },
+      { "src": "/api/send-email", "dest": "backend/index.js" },
       { "src": "/(.*)", "dest": "/frontend/public/$1" }
-    ],
-    "api": {
-      "routes": {
-        "/api/send-email": {
-          "handler": "backend/index.js"
-        }
-      }
-    }
+    ]
   }
