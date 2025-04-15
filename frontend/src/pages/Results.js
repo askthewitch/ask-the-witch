@@ -3,10 +3,9 @@ import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../style.css";
 
-// Updated serverUrl for local vs production
 const serverUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
+    ? "http://localhost:5000"
     : "https://askthewitch.com";
 
 function Results() {
@@ -17,37 +16,29 @@ function Results() {
     {
       name: "Durable",
       oneLiner: "Build a full website in 30 seconds with AI.",
-      why: "Since you're launching a service-based business, Durable gets you online instantly with a clean, professional site—no coding, no waiting. This means you're collecting leads and looking professional from Day One.",
+      why: "Since you're launching a service-based business, Durable gets you online instantly with a clean, professional site—no coding, no waiting.",
       pros: ["Super fast setup", "Includes CRM and invoicing tools"],
       cons: ["Limited design customization", "Free version is limited"],
     },
     {
       name: "Ocoya",
       oneLiner: "AI-powered content creation and social media scheduling.",
-      why: "You'll need visibility fast—Ocoya helps you create and schedule social posts *for your niche* so you can build an audience while you work on the backend. It's like having a content team from day one.",
+      why: "Ocoya helps you create and schedule social posts *for your niche* so you can build an audience while you work on the backend.",
       pros: ["Supports many platforms", "Includes AI captions and hashtags"],
       cons: ["Not great for deep analytics", "Paid plans add up"],
     },
     {
       name: "Tome",
       oneLiner: "Create pitch decks and landing pages with AI storytelling.",
-      why: "Perfect if you're pitching your idea, creating client proposals, or even planning a launch page—Tome helps tell your story beautifully, fast. Great for early-stage presentations or validating your concept.",
+      why: "Perfect for pitching your idea, creating client proposals, or even planning a launch page—Tome helps tell your story beautifully, fast.",
       pros: ["Beautiful templates", "Collaborative interface"],
       cons: ["Exporting can be tricky", "Not as customizable as PowerPoint"],
     },
   ];
 
-  const [input, setInput] = useState("");
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const [emailStatus, setEmailStatus] = useState("idle"); // idle | sending | sent | error
-
-  const handleSubmit = () => {
-    if (input.trim()) {
-      alert(`We'll respond to: "${input}" in a future version ✨`);
-      setInput("");
-    }
-  };
+  const [emailStatus, setEmailStatus] = useState("idle");
 
   const handleEmailSend = async () => {
     const summaryHtml = `
@@ -72,7 +63,8 @@ function Results() {
 
     try {
       setEmailStatus("sending");
-      const response = await fetch(`${serverUrl}/api/send-email`, {
+
+      const response = await fetch(`${serverUrl}/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -97,12 +89,18 @@ function Results() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleEmailSend();
+    }
+  };
+
   return (
     <Layout>
       <div className="results-container">
         <h2 className="results-title">✨ Your Magic Recipe Awaits ✨</h2>
         <p className="results-intro">
-          Okay! So based on what you told me—<strong>{prompt}</strong>—here’s what I’d brew up for you. These tools will help you launch smarter, faster, and with way less stress. Let’s break it down:
+          Based on what you told me—<strong>{prompt}</strong>—here’s what I’d brew up for you:
         </p>
 
         <div className="tool-list">
@@ -140,6 +138,7 @@ function Results() {
                   placeholder="Email to yourself"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={handleKeyDown}
                 />
                 <button className="cta" onClick={handleEmailSend}>
                   📩 Send to Email
