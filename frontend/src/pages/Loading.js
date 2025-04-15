@@ -9,9 +9,8 @@ function Loading() {
 
   const gifs = [
     "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
-    "https://media.giphy.com/media/3o7bu4Fgl0sVn3jPdm/giphy.gif",
-    "https://media.giphy.com/media/xTk9ZvMnb7wyurAfra/giphy.gif",
-    // Add more GIF URLs here!
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODkxNmx4OWsweWZnYm5uZzhoaDFscThocHB0cHVkOTU0ODF1bW5uOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BIo5QXYD7LGbm/giphy.gif",
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJqMHRpb3E2dGdxaHZxNzB3aWhoaWUxbGdlN3UwYnR0bnZlNnlnbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bbshzgyFQDqPHXBo4c/giphy.gif",
   ];
 
   useEffect(() => {
