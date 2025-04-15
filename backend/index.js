@@ -31,7 +31,7 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-app.post("/send-email", async (req, res) => {
+app.post("/api/send-email", async (req, res) => { // CHANGED ROUTE TO /api/send-email
   const { to, subject, html } = req.body;
 
   try {
@@ -50,12 +50,15 @@ app.post("/send-email", async (req, res) => {
 });
 
 // ✅ Test route
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => { // CHANGED ROUTE TO /api/
   res.send("Ask the Witch backend is working! 🧙‍♀️");
 });
 
-// ✅ Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// ✅ Export the app as the handler (for Vercel)
+module.exports = app;
+
+// We can remove the app.listen() part for Vercel
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
