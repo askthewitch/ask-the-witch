@@ -12,7 +12,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://askthewitch.com",
   "https://www.askthewitch.com",
-  "https://your-vercel-frontend-url.vercel.app", // replace with actual if needed
+  // Add your Render frontend URL here once it's deployed
 ];
 
 app.use(cors({
@@ -30,24 +30,19 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-app.post("/", async (req, res) => { // IMPORTANT: Route is now "/" within the function
-  const { to, subject, html } = req.body;
-
-  try {
-    const data = await resend.emails.send({
-      from: "Ask the Witch <noreply@askthewitch.com>",
-      to,
-      subject,
-      html,
-    });
-
-    res.status(200).json({ success: true, data });
-  } catch (error) {
-    console.error("Email send failed:", error);
-    res.status(500).json({ success: false, error: error.message });
-  }
+app.post("/api/send-email", async (req, res) => {
+  // ... your email sending logic ...
 });
 
-module.exports = async (req, res) => {
-  await app(req, res);
-};
+// ✅ Test route
+app.get("/api/", (req, res) => {
+  res.send("Ask the Witch backend is working! 🧙‍♀️");
+});
+
+// ✅ Start the server on the port provided by Render
+const PORT = process.env.PORT || 5000; // Render provides PORT env variable
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+module.exports = app;
