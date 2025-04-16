@@ -3,9 +3,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { Resend } = require("resend");
 require("dotenv").config();
+const Airtable = require('airtable');
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -31,7 +34,8 @@ app.use(bodyParser.json());
 
 app.post("/api/send-email", async (req, res) => {
   try {
-    const { to, subject, html } = req.body;
+    const { to, subject, html, prompt } = req.body;
+
     const data = await resend.emails.send({
       from: "Ask the Witch <noreply@askthewitch.com>",
       to: to,
@@ -39,11 +43,17 @@ app.post("/api/send-email", async (req, res) => {
       html: html,
     });
 
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin); // <---- TRY THIS
+    await base('Prompts').create({
+      "Prompt Text": prompt,
+      "Email": to,
+      "Timestamp": new Date().toISOString()
+    });
+
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(200).json({ success: true, data });
   } catch (error) {
-    console.error("Error sending email:", error);
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin); // <---- AND THIS
+    console.error("Error sending email or saving to Airtable:", error);
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(500).json({ success: false, error: error.message });
   }
 });
