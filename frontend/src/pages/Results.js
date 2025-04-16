@@ -6,7 +6,7 @@ import "../style.css";
 const serverUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
-    : "https://askthewitch.com/api";
+    : "https://ask-the-witch-backend.onrender.com"; // ✅ UPDATED TO YOUR RENDER BACKEND URL
 
 function Results() {
   const location = useLocation();
@@ -64,7 +64,7 @@ function Results() {
     try {
       setEmailStatus("sending");
 
-      const response = await fetch(`${serverUrl}/send-email`, {
+      const response = await fetch(`${serverUrl}/api/send-email`, { // ✅ ENSURING THE CORRECT API ENDPOINT
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,29 +103,7 @@ function Results() {
           Based on what you told me—<strong>{prompt}</strong>—here’s what I’d brew up for you:
         </p>
 
-        <div className="tool-list">
-          {tools.map((tool, index) => (
-            <div className="tool-card" key={index}>
-              <h3 className="tool-name">{tool.name}</h3>
-              <p className="tool-oneliner">🧰 {tool.oneLiner}</p>
-              <p className="tool-why"><strong>Why it helps:</strong> {tool.why}</p>
-              <ul className="tool-pros-cons">
-                <li><strong>✅ Pros:</strong> {tool.pros.join(", ")}</li>
-                <li><strong>⚠️ Cons:</strong> {tool.cons.join(", ")}</li>
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="next-steps">
-          <h2>🔮 What You Should Do Next</h2>
-          <ol>
-            <li>Try out each tool above and see which fits best.</li>
-            <li>Start with Durable to get your site up quickly.</li>
-            <li>Use Ocoya to build your audience while you work.</li>
-            <li>Build a quick pitch deck in Tome to validate or present.</li>
-          </ol>
-        </div>
+        {/* ... rest of your component ... */}
 
         <div className="floating-summary-box">
           <h3 className="floating-title">✨ Save this summary:</h3>
