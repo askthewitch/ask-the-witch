@@ -7,12 +7,13 @@ require("dotenv").config();
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// ✅ CORS SETUP
+
 const allowedOrigins = [
   "http://localhost:3000",
   "https://askthewitch.com",
   "https://www.askthewitch.com",
-  // Add your Render frontend URL here once it's deployed
+  "https://ask-the-witch.vercel.app",
+
 ];
 
 app.use(cors({
@@ -31,16 +32,15 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.post("/api/send-email", async (req, res) => {
-  // ... your email sending logic ...
+
 });
 
-// ✅ Test route
+
 app.get("/api/", (req, res) => {
   res.send("Ask the Witch backend is working! 🧙‍♀️");
 });
 
-// ✅ Start the server on the port provided by Render
-const PORT = process.env.PORT || 5000; // Render provides PORT env variable
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
