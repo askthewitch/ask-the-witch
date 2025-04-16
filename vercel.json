@@ -1,13 +1,13 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "frontend/package.json",
-        "use": "@vercel/next" // Or "@vercel/react-app" if you're not using Next.js
-      }
-    ],
-    "routes": [
-      { "src": "/api/send-email", "dest": "/api/send-email" },
-      { "src": "/(.*)", "dest": "/frontend/public/$1" }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next" // Or "@vercel/react-app" if you're not using Next.js
+    }
+  ],
+  "routes": [
+    { "src": "/api/send-email", "dest": "/api/send-email" },
+    { "src": "/(.*)", "dest": "/frontend/public/$1" }
+  ]
+}
