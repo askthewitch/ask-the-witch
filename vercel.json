@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/next" // Or "@vercel/react-app" if you're not using Next.js
+      "use": "@vercel/next"
     }
   ],
   "routes": [
