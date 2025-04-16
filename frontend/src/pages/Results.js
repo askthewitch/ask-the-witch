@@ -71,6 +71,7 @@ function Results() {
           to: email,
           subject: `✨ Your Ask the Witch AI Summary`,
           html: summaryHtml,
+          prompt: prompt,
         }),
       });
 
