@@ -8,9 +8,13 @@ function Home() {
   const [prompt, setPrompt] = useState("");
 
   const handleGoClick = () => {
+    console.log("handleGoClick function called"); // Added log
     if (prompt.trim() !== "") {
       if ('vibrate' in navigator) {
-        navigator.vibrate(50); // Vibrate for 50 milliseconds on click
+        console.log("navigator.vibrate is supported"); // Added log
+        navigator.vibrate(50); // Short vibration on click
+      } else {
+        console.log("navigator.vibrate is NOT supported"); // Added log
       }
       navigate("/loading", { state: { prompt } });
     }
