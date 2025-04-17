@@ -142,7 +142,7 @@ function Results() {
             ) : (
               <p style={{ color: "limegreen" }}>✅ Sent!</p>
             )}
-            <button className="cta">💻 Download Summary Now</button>
+            
             {emailStatus === "error" && (
               <p style={{ color: "red" }}>⚠️ Something went wrong. Try again?</p>
             )}
