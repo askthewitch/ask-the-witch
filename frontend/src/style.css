@@ -289,6 +289,16 @@ footer {
   margin-top: 0.25rem;
 }
 
+.send-confirmation {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #aaffaa; /* Light green for success */
+}
+
+.send-confirmation.error {
+  color: #ffaaaa; /* Light red for error */
+}
+
 @keyframes gradientBorder {
   0% {
     background-position: 0% 50%;

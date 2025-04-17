@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../style.css";
@@ -38,9 +38,20 @@ function Results() {
 
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const [emailStatus, setEmailStatus] = useState("idle");
+  const [emailStatus, setEmailStatus] = useState("idle"); // 'idle', 'sending', 'sent', 'error'
   const [gdprChecked, setGdprChecked] = useState(false);
   const [gdprError, setGdprError] = useState("");
+  const [sendConfirmation, setSendConfirmation] = useState("");
+
+  useEffect(() => {
+    if (emailStatus === "sent") {
+      setSendConfirmation("Email sent successfully! Please check your inbox (it might take a few minutes).");
+      setTimeout(() => setSendConfirmation(""), 5000); // Clear confirmation after 5 seconds
+    } else if (emailStatus === "error") {
+      setSendConfirmation("Something went wrong. Please try again or ensure your email is correct.");
+      setTimeout(() => setSendConfirmation(""), 5000); // Clear error after 5 seconds
+    }
+  }, [emailStatus]);
 
   const handleCheckboxChange = (event) => {
     setGdprChecked(event.target.checked);
@@ -52,6 +63,10 @@ function Results() {
       setGdprError("Please tick the box to confirm you agree to the terms.");
       return;
     }
+
+    setSendConfirmation(""); // Clear any previous confirmation/error
+    setEmailStatus("sending"); // Set status to 'sending' immediately
+    setEmailSent(false); // Reset emailSent state for new attempts
 
     const summaryHtml = `
       <h2>Your AI Summary for "${prompt}"</h2>
@@ -74,8 +89,6 @@ function Results() {
     `;
 
     try {
-      setEmailStatus("sending");
-
       const response = await fetch(`${serverUrl}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -103,7 +116,7 @@ function Results() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && gdprChecked) {
+    if (e.key === "Enter" && gdprChecked && emailStatus !== "sending") {
       handleEmailSend();
     }
   };
@@ -123,7 +136,7 @@ function Results() {
           {tools.map((tool, index) => (
             <div className="tool-card" key={index}>
               <h3 className="tool-name">{tool.name}</h3>
-              <p className="tool-oneliner">🧰 {tool.oneLiner}</p>
+              <p className="tool-oneliner">🧰 {tool.oneliner}</p>
               <p className="tool-why"><strong>Why it helps:</strong> {tool.why}</p>
               <ul className="tool-pros-cons">
                 <li><strong>✅ Pros:</strong> {tool.pros.join(", ")}</li>
@@ -162,17 +175,14 @@ function Results() {
                 <button
                   className="cta"
                   onClick={handleEmailSend}
-                  disabled={!gdprChecked || emailStatus === "sending" || emailStatus === "sent"}
+                  disabled={!gdprChecked || emailStatus === "sending"}
                 >
                   {emailStatus === "sending" ? "Sending..." : "📩 Send to Email"}
                 </button>
+                {sendConfirmation && <p className="send-confirmation">{sendConfirmation}</p>}
               </>
             ) : (
               <p style={{ color: "limegreen" }}>✅ Sent!</p>
-            )}
-
-            {emailStatus === "error" && (
-              <p style={{ color: "red" }}>⚠️ Something went wrong. Try again?</p>
             )}
           </div>
         </div>
