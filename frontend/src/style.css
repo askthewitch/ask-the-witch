@@ -326,6 +326,7 @@ footer {
   .title {
     font-size: 2.8rem; /* Smaller title font on mobile */
     margin-bottom: 1rem;
+    font-family: 'Griffy', cursive;
   }
 
   .subtitle {
