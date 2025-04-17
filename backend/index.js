@@ -8,7 +8,7 @@ const Airtable = require('airtable');
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(process.env.AIRTABLE_BASE_ID);
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -34,6 +34,10 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
+app.options('/api/send-email', cors(corsOptions), (req, res) => {
+  res.sendStatus(204); // Respond to preflight request with no content
+});
+
 app.post("/api/send-email", async (req, res) => {
   try {
     const { to, subject, html, prompt } = req.body;
@@ -51,11 +55,9 @@ app.post("/api/send-email", async (req, res) => {
       "Timestamp": new Date().toISOString()
     });
 
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(200).json({ success: true, data });
   } catch (error) {
     console.error("Error sending email or saving to Airtable:", error);
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(500).json({ success: false, error: error.message });
   }
 });
