@@ -17,7 +17,7 @@ body {
 }
 
 .title {
-  font-family: 'Griffy', cursive;
+  font-family: 'Griffy', Roboto, cursive; /* Using 'Griffy' and Roboto as fallback */
   font-size: 4rem;
   font-weight: normal;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.721);
@@ -326,7 +326,7 @@ footer {
   .title {
     font-size: 2.8rem; /* Smaller title font on mobile */
     margin-bottom: 1rem;
-    font-family: 'Griffy', cursive;
+    font-family: 'Griffy', Roboto, cursive; /* Using 'Griffy' and Roboto as fallback */
   }
 
   .subtitle {
