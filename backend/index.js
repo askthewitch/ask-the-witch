@@ -19,23 +19,22 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE', 'PATCH'],
   credentials: true,
-  allowedHeaders: 'Content-Type, Authorization',
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 
 app.options('/api/send-email', cors(corsOptions), (req, res) => {
-  res.sendStatus(204); // Respond to preflight request with no content
+  res.sendStatus(204);
 });
 
 app.post("/api/send-email", async (req, res) => {

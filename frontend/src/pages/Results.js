@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"; // Added useRef
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../style.css";
@@ -11,7 +11,7 @@ const serverUrl =
 function Results() {
   const location = useLocation();
   const prompt = location.state?.prompt || "your idea";
-  const checkboxRef = useRef(null); // Create a ref for the checkbox
+  const checkboxRef = useRef(null);
 
   const tools = [
     {
@@ -39,7 +39,7 @@ function Results() {
 
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const [emailStatus, setEmailStatus] = useState("idle"); // 'idle', 'sending', 'sent', 'error'
+  const [emailStatus, setEmailStatus] = useState("idle");
   const [gdprChecked, setGdprChecked] = useState(false);
   const [gdprError, setGdprError] = useState("");
   const [sendConfirmation, setSendConfirmation] = useState("");
@@ -47,16 +47,16 @@ function Results() {
   useEffect(() => {
     if (emailStatus === "sent") {
       setSendConfirmation("Email sent successfully! Please check your inbox (it might take a few minutes).");
-      setTimeout(() => setSendConfirmation(""), 5000); // Clear confirmation after 5 seconds
+      setTimeout(() => setSendConfirmation(""), 5000);
     } else if (emailStatus === "error") {
       setSendConfirmation("Something went wrong. Please try again or ensure your email is correct.");
-      setTimeout(() => setSendConfirmation(""), 5000); // Clear error after 5 seconds
+      setTimeout(() => setSendConfirmation(""), 5000);
     }
   }, [emailStatus]);
 
   const handleCheckboxChange = (event) => {
     setGdprChecked(event.target.checked);
-    setGdprError(""); // Clear error when checked
+    setGdprError("");
   };
 
   const highlightCheckbox = () => {
@@ -73,9 +73,11 @@ function Results() {
       return;
     }
 
-    setSendConfirmation(""); // Clear any previous confirmation/error
-    setEmailStatus("sending"); // Set status to 'sending' immediately
-    setEmailSent(false); // Reset emailSent state for new attempts
+    if (emailStatus === "sending") return; // Prevent multiple sends
+
+    setSendConfirmation("");
+    setEmailStatus("sending");
+    setEmailSent(false);
 
     const summaryHtml = `
       <h2>Your AI Summary for "${prompt}"</h2>
@@ -86,7 +88,7 @@ function Results() {
             (tool) => `
               <li>
                 <strong>${tool.name}</strong><br/>
-                <em>${tool.oneLiner}</em><br/>
+                <em>${tool.oneliner}</em><br/>
                 <p><strong>Why:</strong> ${tool.why}</p>
                 <p>✅ <strong>Pros:</strong> ${tool.pros.join(", ")}</p>
                 <p>⚠️ <strong>Cons:</strong> ${tool.cons.join(", ")}</p>
@@ -125,13 +127,14 @@ function Results() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && gdprChecked && emailStatus !== "sending") {
+    if (e.key === "Enter") {
       e.preventDefault();
-      handleEmailSend();
-    } else if (e.key === "Enter" && !gdprChecked) {
-      e.preventDefault();
-      setGdprError("Please tick the box to confirm you agree to the terms.");
-      highlightCheckbox();
+      if (gdprChecked) {
+        handleEmailSend();
+      } else {
+        setGdprError("Please tick the box to confirm you agree to the terms.");
+        highlightCheckbox();
+      }
     }
   };
 
@@ -182,7 +185,7 @@ function Results() {
                     type="checkbox"
                     checked={gdprChecked}
                     onChange={handleCheckboxChange}
-                    ref={checkboxRef} // Added ref to checkbox
+                    ref={checkboxRef}
                   />
                   I consent to the above.
                 </label>
@@ -190,7 +193,7 @@ function Results() {
                 <button
                   className="cta"
                   onClick={handleEmailSend}
-                  disabled={!gdprChecked || emailStatus === "sending"}
+                  disabled={emailStatus === "sending"} // Simplified disabled logic
                 >
                   {emailStatus === "sending" ? "Sending..." : "📩 Send to Email"}
                 </button>
