@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"; // Added useRef
 import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../style.css";
@@ -11,6 +11,7 @@ const serverUrl =
 function Results() {
   const location = useLocation();
   const prompt = location.state?.prompt || "your idea";
+  const checkboxRef = useRef(null); // Create a ref for the checkbox
 
   const tools = [
     {
@@ -58,9 +59,17 @@ function Results() {
     setGdprError(""); // Clear error when checked
   };
 
+  const highlightCheckbox = () => {
+    if (checkboxRef.current) {
+      checkboxRef.current.classList.add('highlight-checkbox');
+      setTimeout(() => checkboxRef.current.classList.remove('highlight-checkbox'), 1000);
+    }
+  };
+
   const handleEmailSend = async () => {
     if (!gdprChecked) {
       setGdprError("Please tick the box to confirm you agree to the terms.");
+      highlightCheckbox();
       return;
     }
 
@@ -117,11 +126,16 @@ function Results() {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && gdprChecked && emailStatus !== "sending") {
+      e.preventDefault();
       handleEmailSend();
+    } else if (e.key === "Enter" && !gdprChecked) {
+      e.preventDefault();
+      setGdprError("Please tick the box to confirm you agree to the terms.");
+      highlightCheckbox();
     }
   };
 
-  console.log("Results component rendered"); // <----- ADDED LOG
+  console.log("Results component rendered");
 
   return (
     <Layout>
@@ -132,7 +146,7 @@ function Results() {
         </p>
 
         <div className="tool-list">
-          {console.log("Mapping over tools:", tools)} {/* <----- ADDED LOG */}
+          {console.log("Mapping over tools:", tools)}
           {tools.map((tool, index) => (
             <div className="tool-card" key={index}>
               <h3 className="tool-name">{tool.name}</h3>
@@ -146,7 +160,7 @@ function Results() {
           ))}
         </div>
 
-        {console.log("Rendering floating summary box")} {/* <----- ADDED LOG */}
+        {console.log("Rendering floating summary box")}
         <div className="floating-summary-box">
           <h3 className="floating-title">✨ Save this summary:</h3>
           <div className="floating-summary-buttons">
@@ -168,6 +182,7 @@ function Results() {
                     type="checkbox"
                     checked={gdprChecked}
                     onChange={handleCheckboxChange}
+                    ref={checkboxRef} // Added ref to checkbox
                   />
                   I consent to the above.
                 </label>
