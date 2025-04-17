@@ -7,11 +7,18 @@ function Home() {
   const navigate = useNavigate();
   const [prompt, setPrompt] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleGoClick = () => {
     if (prompt.trim() !== "") {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50); // Vibrate for 50 milliseconds on click
+      }
       navigate("/loading", { state: { prompt } });
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleGoClick(); // Call handleGoClick on form submission
   };
 
   return (
@@ -37,7 +44,7 @@ function Home() {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-          <button type="submit" className="cta">
+          <button type="submit" className="cta" onClick={handleGoClick}>
             Go
           </button>
         </form>
