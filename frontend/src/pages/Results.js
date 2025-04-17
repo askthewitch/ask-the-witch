@@ -39,8 +39,20 @@ function Results() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailStatus, setEmailStatus] = useState("idle");
+  const [gdprChecked, setGdprChecked] = useState(false);
+  const [gdprError, setGdprError] = useState("");
+
+  const handleCheckboxChange = (event) => {
+    setGdprChecked(event.target.checked);
+    setGdprError(""); // Clear error when checked
+  };
 
   const handleEmailSend = async () => {
+    if (!gdprChecked) {
+      setGdprError("Please tick the box to confirm you agree to the terms.");
+      return;
+    }
+
     const summaryHtml = `
       <h2>Your AI Summary for "${prompt}"</h2>
       <p>Here are the tools we suggest:</p>
@@ -91,7 +103,7 @@ function Results() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && gdprChecked) {
       handleEmailSend();
     }
   };
@@ -135,14 +147,30 @@ function Results() {
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyDown={handleKeyDown}
                 />
-                <button className="cta" onClick={handleEmailSend}>
-                  📩 Send to Email
+                <p className="gdpr-text">
+                  We will use your email to send you this summary. By ticking this box, you consent to us occasionally sending you updates or sponsored content related to Ask the Witch. You can unsubscribe at any time.
+                </p>
+                <label className="gdpr-label">
+                  <input
+                    type="checkbox"
+                    checked={gdprChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  I consent to the above.
+                </label>
+                {gdprError && <p className="error-message">{gdprError}</p>}
+                <button
+                  className="cta"
+                  onClick={handleEmailSend}
+                  disabled={!gdprChecked || emailStatus === "sending" || emailStatus === "sent"}
+                >
+                  {emailStatus === "sending" ? "Sending..." : "📩 Send to Email"}
                 </button>
               </>
             ) : (
               <p style={{ color: "limegreen" }}>✅ Sent!</p>
             )}
-            
+
             {emailStatus === "error" && (
               <p style={{ color: "red" }}>⚠️ Something went wrong. Try again?</p>
             )}
