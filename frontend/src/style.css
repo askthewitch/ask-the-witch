@@ -10,7 +10,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  background-image: url('/images/backgroundthewitch.png');
+  background-image: url('/frontend/public/images/backgroundthewitch.png');
   background-repeat: repeat;
   background-size: auto;
   background-attachment: fixed;
