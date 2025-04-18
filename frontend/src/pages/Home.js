@@ -85,7 +85,7 @@ function Home() {
           © askthewitch.com 2025 ✨
           <Link to="/privacy">Privacy</Link>
           <Link to="/about">About the Witch</Link>
-          <link to="/terms">Terms</link>
+          <Link to="/terms">Terms</Link>
           <span onClick={openContactModal} style={{ cursor: 'pointer' }}>Contact</span>
         </footer>
 
