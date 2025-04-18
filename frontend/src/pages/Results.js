@@ -142,9 +142,9 @@ function Results() {
 
   return (
     <Layout>
-      <div className="results-container">
+      <div className="results-title">
         <Link to="/" className="title">
-          AskTheWitch<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}>.com</span>
+          AskTheWitch.com<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}></span>
         </Link>
         <p className="results-intro">
           Based on what you told me—<strong>{prompt}</strong>—here’s what I’d brew up for you:
