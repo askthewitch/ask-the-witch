@@ -8,12 +8,11 @@ import Results from './pages/Results';
 import PrivacyTerms from './pages/PrivacyTerms';
 import AboutWitch from './pages/AboutWitch';
 import TermsOfService from './pages/TermsOfService';
-import backgroundImage from '../public/images/backgroundthewitch.png'; // Import the image
 
 function App() {
   return (
     <Router>
-      <div className="page-wrapper" style={{ backgroundImage: `url(${backgroundImage})`, backgroundRepeat: 'repeat', backgroundSize: 'auto', backgroundAttachment: 'fixed' }}>
+      <div className="page-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loading" element={<Loading />} />
