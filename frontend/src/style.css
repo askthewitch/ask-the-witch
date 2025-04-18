@@ -124,7 +124,7 @@ footer span {
 .layout-bg {
   position: relative;
   min-height: 100vh;
-  background-color: #8663AA;
+  background-color: transparent;
   overflow: hidden;
   width: 100%;
 }
