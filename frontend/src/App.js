@@ -1,5 +1,5 @@
 import "./style.css";
-import "./App.css"; // <-- Import this too so both styles are included
+import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -17,6 +17,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/privacy" element={<PrivacyTerms />} /> {/* Add this route */}
+          <Route path="/terms" element={<TermsOfService />} /> {/* Add this route */}
+          <Route path="/about" element={<AboutWitch />} />   {/* Add this route */}
         </Routes>
       </div>
     </Router>
