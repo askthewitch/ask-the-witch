@@ -1,11 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import "../style.css";
 import Layout from "../components/Layout";
+import ContactModal from "../components/ContactModal"; // Import the modal component
 
 function Home() {
   const navigate = useNavigate();
   const [prompt, setPrompt] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
+  const [contactQuestion, setContactQuestion] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
 
   const handleGoClick = () => {
     console.log("handleGoClick function called"); // Added log
@@ -23,6 +28,29 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleGoClick(); // Call handleGoClick on form submission
+  };
+
+  const openContactModal = () => {
+    setShowModal(true);
+    setMessageSent(false); // Reset message sent state when opening modal
+    setContactQuestion(""); // Clear previous question
+    setContactEmail("");   // Clear previous email
+  };
+
+  const closeContactModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSendMessage = () => {
+    // In a real application, you would send this data to a server
+    console.log("Question:", contactQuestion);
+    console.log("Email:", contactEmail);
+
+    // For this simple version, just show a message and close the modal
+    setMessageSent(true);
+    setTimeout(() => {
+      setShowModal(false);
+    }, 2000); // Show message for 2 seconds
   };
 
   return (
@@ -53,7 +81,21 @@ function Home() {
           </button>
         </form>
 
-        <footer>© askthewitch.com 2025 ✨</footer>
+        <footer>
+          © askthewitch.com 2025 ✨ | <Link to="/privacy">Privacy &amp; Terms</Link> | <Link to="/about">About the Witch</Link> | <span onClick={openContactModal} style={{ cursor: 'pointer' }}>Contact</span>
+        </footer>
+
+        {showModal && (
+          <ContactModal
+            question={contactQuestion}
+            email={contactEmail}
+            onQuestionChange={(e) => setContactQuestion(e.target.value)}
+            onEmailChange={(e) => setContactEmail(e.target.value)}
+            onSend={handleSendMessage}
+            onClose={closeContactModal}
+            messageSent={messageSent}
+          />
+        )}
       </div>
     </Layout>
   );
