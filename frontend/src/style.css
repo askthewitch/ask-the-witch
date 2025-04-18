@@ -149,6 +149,9 @@ footer span {
 }
 
 .results-title {
+  font-family: 'Griffy', Roboto, cursive;
+  font-weight: normal;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.721);
   font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
