@@ -7,6 +7,7 @@ import Loading from "./pages/Loading";
 import Results from "./pages/Results";
 import PrivacyTerms from './pages/PrivacyTerms';
 import AboutWitch from './pages/AboutWitch';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
