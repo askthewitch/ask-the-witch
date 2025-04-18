@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom"; // Added Link import
 import Layout from "../components/Layout";
 import "../style.css";
 
@@ -143,7 +143,9 @@ function Results() {
   return (
     <Layout>
       <div className="results-container">
-        <h2 className="results-title">✨ Your Magic Recipe Awaits ✨</h2>
+        <Link to="/" className="title">
+          AskTheWitch<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}>.com</span>
+        </Link>
         <p className="results-intro">
           Based on what you told me—<strong>{prompt}</strong>—here’s what I’d brew up for you:
         </p>
