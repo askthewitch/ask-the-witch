@@ -143,7 +143,7 @@ function Results() {
   return (
     <Layout>
       <div className="results-container">
-        <Link to="/" className="results-title">
+        <Link to="/" className="title results-title-link">
           AskTheWitch.com<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}></span>
         </Link>
         <p className="results-intro">
