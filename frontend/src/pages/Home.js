@@ -82,7 +82,10 @@ function Home() {
         </form>
 
         <footer>
-          © askthewitch.com 2025 ✨ | <Link to="/privacy">Privacy &amp; Terms</Link> | <Link to="/about">About the Witch</Link> | <span onClick={openContactModal} style={{ cursor: 'pointer' }}>Contact</span>
+          © askthewitch.com 2025 ✨
+          <Link to="/privacy">Privacy &amp; Terms</Link>
+          <Link to="/about">About the Witch</Link>
+          <span onClick={openContactModal} style={{ cursor: 'pointer' }}>Contact</span>
         </footer>
 
         {showModal && (
