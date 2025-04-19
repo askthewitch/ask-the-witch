@@ -8,19 +8,23 @@ function Home() {
   const navigate = useNavigate();
   const [prompt, setPrompt] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [messageSent, setMessageSent] = useState(false); // You might want to remove this state
 
   const handleGoClick = () => {
-    // ... (rest of your handleGoClick function) ...
+    if (prompt.trim() !== "") {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+      }
+      navigate("/loading", { state: { prompt } });
+    }
   };
 
   const handleSubmit = (e) => {
-    // ... (rest of your handleSubmit function) ...
+    e.preventDefault(); // Prevent the default form submission
+    handleGoClick();     // Call the navigation function
   };
 
   const openContactModal = () => {
     setShowModal(true);
-    setMessageSent(false); // Reset message sent state (consider removing)
   };
 
   const closeContactModal = () => {
