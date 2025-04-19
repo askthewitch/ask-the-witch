@@ -22,6 +22,7 @@ function ContactModal({ question, email, onQuestionChange, onEmailChange, onSend
           value={question}
           onChange={onQuestionChange}
           rows="4"
+          placeholder="Enter your question here" // Added placeholder
         />
         <label htmlFor="email">Your Email:</label>
         <input
@@ -29,6 +30,7 @@ function ContactModal({ question, email, onQuestionChange, onEmailChange, onSend
           id="email"
           value={email}
           onChange={onEmailChange}
+          placeholder="Your email address" // Added placeholder
         />
         <div className={styles.buttons}>
           <button onClick={onSend}>Send</button>
