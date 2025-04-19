@@ -7,7 +7,9 @@ function ContactModal({ onClose, messageSent }) {
       <div className={styles.modalOverlay}>
         <div className={styles.modalContent}>
           <p>Message Sent!</p>
-          <button onClick={onClose}>Close</button> {/* Keep close button for consistency */}
+          <div className={styles.buttons}>
+            <button onClick={onClose}>Close</button>
+          </div>
         </div>
       </div>
     );
@@ -18,9 +20,11 @@ function ContactModal({ onClose, messageSent }) {
       <div className={styles.modalContent}>
         <h2>Contact Us</h2>
         <p>Please email us at:</p>
-        <p>
-          <a href="mailto:info@askthewitch.com">info@askthewitch.com</a>
-        </p>
+        <div className={styles.emailContainer}>
+          <a href="mailto:info@askthewitch.com" className={styles.emailLink}>
+            info@askthewitch.com
+          </a>
+        </div>
         <p>We will respond as soon as we can.</p>
         <div className={styles.buttons}>
           <button onClick={onClose}>Close</button>
