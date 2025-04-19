@@ -13,23 +13,23 @@
 }
 
 .modalContent {
-  background-color: rgba(231, 224, 224, 0.921);
+  background-color:  #8663AA;
   padding: 30px; /* Increased padding for more space */
   border-radius: 12px; /* Slightly more rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: center; /* Center the content within the modal */
-  max-width: 500px;
-  width: 90%;
+  max-width: 400px;
+  width: 80%;
 }
 
 .modalContent h2 {
   margin-top: 0;
   margin-bottom: 20px; /* More space below the title */
-  color: #8663AA;
+  color: #ececed;
 }
 
 .emailContainer {
-  background-color: #f0f0f0; /* Light background for the pill */
+  background-color: #ececed; /* Light background for the pill */
   border-radius: 25px; /* Creates the pill shape */
   padding: 10px 20px; /* Padding inside the pill */
   margin-bottom: 20px; /* Space below the email pill */
