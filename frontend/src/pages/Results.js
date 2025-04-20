@@ -189,7 +189,7 @@ function Results() {
                     onChange={handleCheckboxChange}
                     ref={checkboxRef}
                   />
-                  I consent to the above.
+                  I consent to the above. Please allow sufficient time for email to send and arrive.
                 </label>
                 {gdprError && <p className="error-message">{gdprError}</p>}
                 <button
