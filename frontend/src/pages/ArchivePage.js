@@ -1,7 +1,8 @@
+// frontend/src/pages/ArchivePage.js
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import '../style.css'; // Or create ArchivePage.module.css for specific styles
-import { Helmet } from 'react-helmet-async'; // For setting title and meta description
+import '../style.css';
+import { Helmet } from 'react-helmet-async';
 
 function ArchivePage() {
   const [archiveData, setArchiveData] = useState([]);
@@ -11,7 +12,7 @@ function ArchivePage() {
   useEffect(() => {
     const fetchArchivePrompts = async () => {
       setLoading(true);
-      setError(null); // Reset any previous error
+      setError(null);
       try {
         const response = await fetch('/api/archive-prompts');
         if (!response.ok) {
@@ -76,7 +77,15 @@ function ArchivePage() {
             <li key={index} className="prompt-item">
               <strong>User Prompt:</strong> {item.userPrompt}<br />
               <strong>AI Result:</strong> {item.aiResult}<br />
-              <small>Timestamp: {new Date(item.timestamp).toLocaleString()}</small>
+              <small>Timestamp: {new Date(item.timestamp).toLocaleString()}</small><br />
+              {item.keywords && item.keywords.length > 0 && (
+                <div className="keywords">
+                  <strong>Keywords:</strong>
+                  {item.keywords.map((keyword, key) => (
+                    <span key={key} className="keyword-tag">{keyword}</span>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

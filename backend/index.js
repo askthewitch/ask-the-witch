@@ -1,3 +1,4 @@
+// backend/index.js
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -64,14 +65,15 @@ app.post("/api/send-email", async (req, res) => {
 app.get("/api/archive-prompts", async (req, res) => {
   try {
     const archiveData = await base('prompts-archive-data').select({
-      fields: ['User Prompt', 'AI Result', 'Timestamp'],
-      sort: [{ field: 'Timestamp', direction: 'desc' }]
+      fields: ['User Prompt', 'AI Results', 'Time', 'Keywords/Tags'],
+      sort: [{ field: 'Time', direction: 'desc' }]
     }).all();
 
     const formattedArchiveData = archiveData.map(record => ({
       userPrompt: record.get('User Prompt'),
-      aiResult: record.get('AI Result'),
-      timestamp: record.get('Timestamp')
+      aiResult: record.get('AI Results'),
+      timestamp: record.get('Time'),
+      keywords: record.get('Keywords/Tags')
     }));
 
     res.json(formattedArchiveData);
