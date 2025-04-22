@@ -67,7 +67,7 @@ app.post("/api/send-email", async (req, res) => {
 
 app.get("/api/archive-prompts", async (req, res) => {
   try {
-    const archiveData = await archiveBase(tblDCYBzebCQoA6Ps).select({ // Use archiveBase here
+    const archiveData = await archiveBase('tblDCYBzebCQoA6Ps').select({ // Use archiveBase here
       fields: ['User Prompt', 'AI Results', 'Time', 'Keywords/Tags'],
       sort: [{ field: 'Time', direction: 'desc' }]
     }).all();
