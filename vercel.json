@@ -3,18 +3,16 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/react-app",
-      "dest": "frontend" 
+      "use": "@vercel/react-app"
     },
     {
       "src": "backend/index.js",
-      "use": "@vercel/node",
-      "dest": "api" 
+      "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/api/archive-prompts", "dest": "api/index.js" },
-    { "src": "/api/send-email", "dest": "api/index.js" },
+    { "src": "/api/archive-prompts", "dest": "backend/index.js" },
+    { "src": "/api/send-email", "dest": "backend/index.js" },
     { "src": "/(.*)", "dest": "frontend/public/$1" }
   ]
 }
