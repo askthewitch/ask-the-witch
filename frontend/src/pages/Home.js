@@ -65,6 +65,7 @@ function Home() {
           <Link to="/about">About the Witch</Link>
           <Link to="/terms">Terms</Link>
           <span onClick={openContactModal} style={{ cursor: 'pointer' }}>Contact</span>
+          <Link to="/prompts/" style={{ marginLeft: '1rem', fontSize: '0.8rem', opacity: 0.7 }}>Archive</Link>
         </footer>
 
         {showModal && (

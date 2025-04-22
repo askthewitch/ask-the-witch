@@ -8,6 +8,7 @@ import Results from './pages/Results';
 import PrivacyTerms from './pages/PrivacyTerms';
 import AboutWitch from './pages/AboutWitch';
 import TermsOfService from './pages/TermsOfService';
+import ArchivePage from './pages/ArchivePage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyTerms />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/about" element={<AboutWitch />} />
+          <Route path="/prompts/" element={<ArchivePage />} />
         </Routes>
       </div>
     </Router>
