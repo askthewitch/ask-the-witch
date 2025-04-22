@@ -61,6 +61,25 @@ app.post("/api/send-email", async (req, res) => {
   }
 });
 
+app.get("/api/prompts", async (req, res) => {
+  try {
+    const prompts = await base('Prompts').select({
+      fields: ['Prompt Text', 'Timestamp'], // Specify the fields you want to retrieve
+      sort: [{ field: 'Timestamp', direction: 'desc' }] // Order by timestamp, newest first
+    }).all();
+
+    const formattedPrompts = prompts.map(record => ({
+      text: record.get('Prompt Text'),
+      timestamp: record.get('Timestamp')
+    }));
+
+    res.json(formattedPrompts);
+  } catch (error) {
+    console.error("Error fetching prompts from Airtable:", error);
+    res.status(500).json({ error: 'Failed to fetch prompts' });
+  }
+});
+
 app.get("/api/", (req, res) => {
   res.send("Ask the Witch backend is working! 🧙‍♀️");
 });

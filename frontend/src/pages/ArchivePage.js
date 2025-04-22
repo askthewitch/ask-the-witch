@@ -9,21 +9,19 @@ function ArchivePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Placeholder for fetching prompts from the backend
     const fetchPrompts = async () => {
       setLoading(true);
+      setError(null); // Reset any previous error
       try {
-        // Simulate fetching data (replace with actual API call later)
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const mockPrompts = [
-          { text: "A whimsical prompt about a talking cat." },
-          { text: "Generate a business idea for sustainable pet toys." },
-          { text: "Write a short poem about a lonely robot." },
-        ];
-        setPrompts(mockPrompts);
+        const response = await fetch('/api/prompts');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setPrompts(data);
         setLoading(false);
       } catch (e) {
-        setError("Failed to load prompts.");
+        setError('Failed to load prompts.');
         setLoading(false);
       }
     };
