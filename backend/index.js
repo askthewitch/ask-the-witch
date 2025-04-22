@@ -67,7 +67,8 @@ app.post("/api/send-email", async (req, res) => {
 
 app.get("/api/archive-prompts", async (req, res) => {
   try {
-    const archiveData = await archiveBase(process.env.ARCHIVE_TABLE_ID).select({ // Use the env var here
+    // Use the Table ID from the environment variable here
+    const archiveData = await archiveBase(process.env.ARCHIVE_TABLE_ID).select({
       fields: ['User Prompt', 'AI Results', 'Time', 'Keywords/Tags'],
       sort: [{ field: 'Time', direction: 'desc' }]
     }).all();
