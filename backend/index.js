@@ -64,7 +64,7 @@ app.post("/api/send-email", async (req, res) => {
 app.get("/api/archive-prompts", async (req, res) => {
   try {
     const archiveData = await base('prompts-archive-data').select({
-      fields: ['User Prompt', 'AI Result', 'Timestamp'], // Adjust field names to match your Airtable
+      fields: ['User Prompt', 'AI Results', 'Time'], 
       sort: [{ field: 'Timestamp', direction: 'desc' }]
     }).all();
 

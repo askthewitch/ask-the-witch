@@ -12,7 +12,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/archive-prompts",
+      "dest": "backend/index.js"
+    },
+    {
+      "src": "/api/send-email",
       "dest": "backend/index.js"
     },
     {
