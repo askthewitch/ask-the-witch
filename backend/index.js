@@ -61,22 +61,23 @@ app.post("/api/send-email", async (req, res) => {
   }
 });
 
-app.get("/api/prompts", async (req, res) => {
+app.get("/api/archive-prompts", async (req, res) => {
   try {
-    const prompts = await base('Prompts').select({
-      fields: ['Prompt Text', 'Timestamp'], // Specify the fields you want to retrieve
-      sort: [{ field: 'Timestamp', direction: 'desc' }] // Order by timestamp, newest first
+    const archiveData = await base('prompts-archive-data').select({
+      fields: ['User Prompt', 'AI Result', 'Timestamp'], // Adjust field names to match your Airtable
+      sort: [{ field: 'Timestamp', direction: 'desc' }]
     }).all();
 
-    const formattedPrompts = prompts.map(record => ({
-      text: record.get('Prompt Text'),
+    const formattedArchiveData = archiveData.map(record => ({
+      userPrompt: record.get('User Prompt'),
+      aiResult: record.get('AI Result'),
       timestamp: record.get('Timestamp')
     }));
 
-    res.json(formattedPrompts);
+    res.json(formattedArchiveData);
   } catch (error) {
-    console.error("Error fetching prompts from Airtable:", error);
-    res.status(500).json({ error: 'Failed to fetch prompts' });
+    console.error("Error fetching archive prompts from Airtable:", error);
+    res.status(500).json({ error: 'Failed to fetch archive prompts' });
   }
 });
 
