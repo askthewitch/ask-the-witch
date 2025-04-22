@@ -1,4 +1,3 @@
-// backend/index.js
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -9,7 +8,11 @@ const Airtable = require('airtable');
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(process.env.AIRTABLE_BASE_ID);
+// Base connected to the 'Prompts' table (for email submissions)
+const promptsBase = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(process.env.AIRTABLE_BASE_ID);
+
+// Base connected to the 'prompts-archive-data' table
+const archiveBase = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base('tblDCYBzebCQoA6Ps'); // Use the correct Base ID
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -49,7 +52,7 @@ app.post("/api/send-email", async (req, res) => {
       html: html,
     });
 
-    await base('Prompts').create({
+    await promptsBase('Prompts').create({ // Use promptsBase here
       "Prompt Text": prompt,
       "Email": to,
       "Timestamp": new Date().toISOString()
@@ -64,7 +67,7 @@ app.post("/api/send-email", async (req, res) => {
 
 app.get("/api/archive-prompts", async (req, res) => {
   try {
-    const archiveData = await base('prompts-archive-data').select({
+    const archiveData = await archiveBase('prompts-archive-data').select({ // Use archiveBase here
       fields: ['User Prompt', 'AI Results', 'Time', 'Keywords/Tags'],
       sort: [{ field: 'Time', direction: 'desc' }]
     }).all();
@@ -73,7 +76,7 @@ app.get("/api/archive-prompts", async (req, res) => {
       userPrompt: record.get('User Prompt'),
       aiResult: record.get('AI Results'),
       timestamp: record.get('Time'),
-      keywords: record.get('Keywords/Tags')
+      keywords: record.get('Keywords/Tags'),
     }));
 
     res.json(formattedArchiveData);
