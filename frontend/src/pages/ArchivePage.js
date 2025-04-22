@@ -4,29 +4,29 @@ import '../style.css'; // Or create ArchivePage.module.css for specific styles
 import { Helmet } from 'react-helmet-async'; // For setting title and meta description
 
 function ArchivePage() {
-  const [prompts, setPrompts] = useState([]);
+  const [archiveData, setArchiveData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPrompts = async () => {
+    const fetchArchivePrompts = async () => {
       setLoading(true);
       setError(null); // Reset any previous error
       try {
-        const response = await fetch('/api/prompts');
+        const response = await fetch('/api/archive-prompts');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setPrompts(data);
+        setArchiveData(data);
         setLoading(false);
       } catch (e) {
-        setError('Failed to load prompts.');
+        setError('Failed to load archive prompts.');
         setLoading(false);
       }
     };
 
-    fetchPrompts();
+    fetchArchivePrompts();
   }, []);
 
   if (loading) {
@@ -72,9 +72,11 @@ function ArchivePage() {
         <h1>User-Generated AI Prompts</h1>
         <p className="archive-intro">Explore prompts shared by our community.</p>
         <ul className="prompt-list">
-          {prompts.map((prompt, index) => (
+          {archiveData.map((item, index) => (
             <li key={index} className="prompt-item">
-              {prompt.text}
+              <strong>User Prompt:</strong> {item.userPrompt}<br />
+              <strong>AI Result:</strong> {item.aiResult}<br />
+              <small>Timestamp: {new Date(item.timestamp).toLocaleString()}</small>
             </li>
           ))}
         </ul>
