@@ -14,7 +14,7 @@ function ArchivePage() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/archive-prompts');
+        const response = await fetch('https://ask-the-witch-backend.onrender.com/api/archive-prompts');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
