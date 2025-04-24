@@ -466,33 +466,26 @@ footer span {
   @media (max-width: 768px) {
     /* ... other mobile styles ... */
   
-  footer {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    text-align: center;
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: row; /* Change to row for horizontal arrangement */
-    align-items: center; /* Center items vertically within the row */
-    justify-content: center; /* Distribute items evenly along the row */
-    flex-wrap: wrap; /* Allow items to wrap to the next line if they don't fit */
-  }
+    footer {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      text-align: center; /* Center the text within each item */
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column; /* Stack the items vertically */
+      align-items: center; /* Center the items horizontally within the footer */
+    }
   
-  footer a,
-  footer span {
-    display: inline-block; /* Allows them to sit on the same line */
-    margin: 0 0.5rem 0.5rem 0.5rem; /* Add horizontal spacing and some bottom margin */
-  }
+    footer a,
+    footer span {
+      margin-bottom: 0.5rem;
+      display: block; /* Make each item take up a full line */
+      width: 100%; /* Ensure they take full width to respect alignment */
+    }
   
-  footer a:first-child,
-  footer span:first-child {
-    margin-left: 0; /* Remove left margin for the first item */
-  }
-  
-  footer a:last-child,
-  footer span:last-child {
-    margin-right: 0; /* Remove right margin for the last item */
-    margin-bottom: 0; /* Remove bottom margin for the last item on a line */
-  }
+    footer a:last-child,
+    footer span:last-child {
+      margin-bottom: 0;
+    }
   }
 }
