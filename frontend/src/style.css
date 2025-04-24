@@ -106,7 +106,7 @@ footer span {
 
 footer a:not(:first-child),
 footer span:not(:first-child) {
-  margin-left: 1.25rem;
+  margin-left: 0;
 }
 
 footer a {
