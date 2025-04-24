@@ -481,6 +481,7 @@ footer span {
       margin-bottom: 0.5rem;
       display: block; /* Make each item take up a full line */
       width: 100%; /* Ensure they take full width to respect alignment */
+      margin-left: 0 !important;
     }
   
     footer a:last-child,
