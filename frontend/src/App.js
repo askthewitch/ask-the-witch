@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Results from './pages/Results';
 import ArchivePage from './pages/ArchivePage';
 import AboutWitch from './pages/AboutWitch';
-import Contact from './components/ContactModal';
+import ContactModal from './components/ContactModal';
 import PrivacyTerms from './pages/PrivacyTerms';
 import TermsOfService from './pages/TermsOfService';
 import Loading from './pages/Loading';
