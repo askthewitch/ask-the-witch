@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Results from './pages/Results';
 import ArchivePage from './pages/ArchivePage';
 import AboutWitch from './pages/AboutWitch';
-import Contact from './pages/Contact';
+import Contact from './components/ContactModal';
 import PrivacyTerms from './pages/PrivacyTerms';
 import TermsOfService from './pages/TermsOfService';
 import Loading from './pages/Loading';
@@ -21,7 +21,7 @@ function App() {
           <Route path="/results" element={<Results />} />
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/about" element={<AboutWitch />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactModal />} />
           <Route path="/privacy" element={<PrivacyTerms />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/loading" element={<Loading />} />
