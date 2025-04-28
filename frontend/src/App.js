@@ -1,29 +1,34 @@
-import './style.css';
-import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Loading from './pages/Loading';
 import Results from './pages/Results';
-import PrivacyTerms from './pages/PrivacyTerms';
-import AboutWitch from './pages/AboutWitch';
-import TermsOfService from './pages/TermsOfService';
 import ArchivePage from './pages/ArchivePage';
+import AboutWitch from './pages/AboutWitch';
+import Contact from './pages/Contact';
+import PrivacyTerms from './pages/PrivacyTerms';
+import TermsOfService from './pages/TermsOfService';
+import Loading from './pages/Loading';
+import Layout from './Layout'; // Assuming you have a Layout component for shared elements
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   return (
     <Router>
-      <div className="page-wrapper">
+      <Layout> {/* Assuming Layout wraps your main content */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/loading" element={<Loading />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/archive" element={<ArchivePage />} />
+          <Route path="/about" element={<AboutWitch />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<PrivacyTerms />} />
           <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/about" element={<AboutWitch />} />
-          <Route path="/prompts/" element={<ArchivePage />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
-      </div>
+        <Analytics />
+        <SpeedInsights />
+      </Layout>
     </Router>
   );
 }
