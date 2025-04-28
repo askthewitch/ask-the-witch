@@ -8,7 +8,7 @@ import Contact from './pages/Contact';
 import PrivacyTerms from './pages/PrivacyTerms';
 import TermsOfService from './pages/TermsOfService';
 import Loading from './pages/Loading';
-import Layout from './Layout'; // Assuming you have a Layout component for shared elements
+import Layout from './components/Layout';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
