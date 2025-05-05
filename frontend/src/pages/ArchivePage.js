@@ -53,7 +53,10 @@ function ArchivePage() {
     <Layout>
       {/* ... rendering logic ... */}
       <div className="container archive-page">
-        <h1 className='title'>User-Generated AI Prompts</h1>
+        <Link to="/" className="title results-title-link">
+                  AskTheWitch.com<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}></span>
+                </Link>
+        <h1>User-Generated AI Prompts</h1>
         <p className="archive-intro">Explore prompts shared by our community.</p>
                 <ul className="prompt-list">
           {archiveData.map((item, index) => (
