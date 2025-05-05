@@ -1,6 +1,7 @@
 // frontend/src/pages/ArchivePage.js
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import { Link } from 'react-router-dom'; 
 import '../style.css';
 import { Helmet } from 'react-helmet-async';
 
