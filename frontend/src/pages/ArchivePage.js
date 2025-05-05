@@ -62,7 +62,7 @@ function ArchivePage() {
     );
   }
 
-  console.log('archiveData:', archiveData); // Keep this in for now, just in case!
+  console.log('archiveData:', archiveData); // Keep this for potential debugging in the console
 
   return (
     <Layout>
@@ -81,17 +81,7 @@ function ArchivePage() {
         <ul className="prompt-list">
           {archiveData.map((item, index) => (
             <li key={index} className="prompt-item">
-              <strong>User Prompt:</strong> {item.userPrompt}<br />
-              <strong>AI Result:</strong> {item.aiResult}<br />
-              <small>Timestamp: {new Date(item.timestamp).toLocaleString()}</small><br />
-              {item.keywords && item.keywords.length > 0 && (
-                <div className="keywords">
-                  <strong>Keywords:</strong>
-                  {item.keywords.map((keyword, key) => (
-                    <span key={key} className="keyword-tag">{keyword}</span>
-                  ))}
-                </div>
-              )}
+              <strong>User Prompt:</strong> {item.userPrompt}
             </li>
           ))}
         </ul>
