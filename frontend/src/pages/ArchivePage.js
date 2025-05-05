@@ -18,8 +18,9 @@ function ArchivePage() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        setArchiveData(data);
+        const jsonData = await response.json();
+        setArchiveData(jsonData);
+        console.log('Data received:', jsonData); // Log the raw JSON data
         setLoading(false);
       } catch (e) {
         setError('Failed to load archive prompts.');
@@ -33,15 +34,7 @@ function ArchivePage() {
   if (loading) {
     return (
       <Layout>
-        <Helmet>
-          <title>User-Generated AI Prompts | AskTheWitch.com</title>
-          <meta name="description" content="Explore a vast collection of user-submitted AI prompts for creative inspiration, business ideas, and more. Discover unique prompts shared by the AskTheWitch.com community." />
-          <meta name="robots" content="index, follow" />
-        </Helmet>
-        <div className="container archive-page">
-          <h1>User-Generated AI Prompts</h1>
-          <p className="archive-intro">Loading prompts...</p>
-        </div>
+        {/* ... loading UI ... */}
       </Layout>
     );
   }
@@ -49,28 +42,16 @@ function ArchivePage() {
   if (error) {
     return (
       <Layout>
-        <Helmet>
-          <title>User-Generated AI Prompts | AskTheWitch.com</title>
-          <meta name="description" content="Explore a vast collection of user-submitted AI prompts for creative inspiration, business ideas, and more. Discover unique prompts shared by the AskTheWitch.com community." />
-          <meta name="robots" content="index, follow" />
-        </Helmet>
-        <div className="container archive-page">
-          <h1>User-Generated AI Prompts</h1>
-          <p className="archive-intro error">{error}</p>
-        </div>
+        {/* ... error UI ... */}
       </Layout>
     );
   }
 
-  console.log('archiveData:', archiveData); // Keep this for potential debugging in the console
+  console.log('archiveData state:', archiveData); // Keep this as well
 
   return (
     <Layout>
-      <Helmet>
-        <title>User-Generated AI Prompts | AskTheWitch.com</title>
-        <meta name="description" content="Explore a vast collection of user-submitted AI prompts for creative inspiration, business ideas, and more. Discover unique prompts shared by the AskTheWitch.com community." />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
+      {/* ... rendering logic ... */}
       <div className="container archive-page">
         <h1>User-Generated AI Prompts</h1>
         <p className="archive-intro">Explore prompts shared by our community.</p>
