@@ -536,17 +536,3 @@ footer span {
       width: 100%; /* Ensure they take full width to respect alignment */
       margin-left: 0 !important;
     }
-
-    footer a:last-child,
-    footer span:last-child {
-      margin-bottom: 0;
-    }
-
-    .archive-page {
-      padding: 1rem;
-    }
-
-    .archive-intro {
-      font-size: 1rem;
-    }
-  }
