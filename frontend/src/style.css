@@ -518,7 +518,7 @@ footer span {
 
   @media (max-width: 768px) {
     /* ... other mobile styles ... */
-  
+
     footer {
       font-size: 0.8rem;
       opacity: 0.8;
@@ -528,7 +528,7 @@ footer span {
       flex-direction: column; /* Stack the items vertically */
       align-items: center; /* Center the items horizontally within the footer */
     }
-  
+
     footer a,
     footer span {
       margin-bottom: 0.5rem;
@@ -536,3 +536,17 @@ footer span {
       width: 100%; /* Ensure they take full width to respect alignment */
       margin-left: 0 !important;
     }
+
+    footer a:last-child,
+    footer span:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-page {
+      padding: 1rem;
+    }
+
+    .archive-intro {
+      font-size: 1rem;
+    }
+  }
