@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/archive" element={<ArchivePage />} />
+          <Route path="/prompts" element={<ArchivePage />} />
           <Route path="/about" element={<AboutWitch />} />
           <Route path="/contact" element={<ContactModal />} />
           <Route path="/privacy" element={<PrivacyTerms />} />
