@@ -80,7 +80,9 @@ app.get("/api/archive-prompts", async (req, res) => {
       keywords: record.get('Keywords/Tags'),
     }));
 
+    console.log("Formatted Archive Data:", JSON.stringify(formattedArchiveData, null, 2)); // ADD THIS LINE
     res.json(formattedArchiveData);
+
   } catch (error) {
     console.error("Error fetching archive prompts from Airtable:", error);
     res.status(500).json({ error: 'Failed to fetch archive prompts' });
