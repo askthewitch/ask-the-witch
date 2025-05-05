@@ -62,6 +62,8 @@ function ArchivePage() {
     );
   }
 
+  console.log('archiveData:', archiveData); // ADD THIS LINE
+
   return (
     <Layout>
       <Helmet>
