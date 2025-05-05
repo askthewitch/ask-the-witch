@@ -55,11 +55,7 @@ function ArchivePage() {
       <div className="container archive-page">
         <h1>User-Generated AI Prompts</h1>
         <p className="archive-intro">Explore prompts shared by our community.</p>
-        <div>Archive Data Length: {archiveData.length}</div>
-        {archiveData.length > 0 && (
-          <div>First Prompt: {archiveData[0]?.userPrompt}</div>
-        )}
-        <ul className="prompt-list">
+                <ul className="prompt-list">
           {archiveData.map((item, index) => (
             <li key={index} className="prompt-item">
               <strong>User Prompt:</strong> {item.userPrompt}
