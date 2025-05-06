@@ -57,8 +57,8 @@ function ArchivePage() {
         <Link to="/" className="title results-title-link">
                   AskTheWitch.com<span style={{ fontFamily: 'Roboto, sans-serif', fontStyle: 'normal' }}></span>
                 </Link>
-        <h1>User-Generated AI Prompts</h1>
-        <p className="archive-intro">Explore prompts shared by our community.</p>
+        <h1 style="text-align: center;">User-Generated AI Prompts</h1>
+        <p className="archive-intro">Explore prompts entered and shared by our community.</p>
                 <ul className="prompt-list">
           {archiveData.map((item, index) => (
             <li key={index} className="prompt-item">
