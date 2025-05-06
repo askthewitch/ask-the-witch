@@ -516,6 +516,18 @@ footer span {
     margin-top: 0.3rem;
   }
 
+  .cta[disabled]::after {
+    content: '...'; /* This adds "..." after the button text */
+    display: inline-block; /* Allows the animation to affect the content */
+    animation: blink-ellipsis 1s infinite steps(3, start); /* Applies the animation */
+  }
+  
+  @keyframes blink-ellipsis {
+    to {
+      width: 1.5em; /* Adjusts the width as the dots appear */
+    }
+  }
+
   @media (max-width: 768px) {
     /* ... other mobile styles ... */
 
