@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -45,49 +47,59 @@ body {
   box-shadow: 0 0 0 2px #b79fd6;
 }
 
+/* Updated .cta styles for Button #28's look and hover */
 .cta {
   position: relative;
   z-index: 1;
   background-color: white;
-  color: #8663AA;
+  color: #1ECD97;
   padding: 0.75rem 2rem;
   font-size: 1rem;
-  border: none;
-  border-radius: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 2px solid #1ECD97;
+  border-radius: 40px;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   margin-top: 1rem;
-}
-
-.cta::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(270deg, #f27ee1, #b79fd6, #f27ee1);
-  background-size: 600% 600%;
-  border-radius: 25px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  animation: gradientBorder 4s linear infinite;
-}
-
-.cta:hover::before {
-  opacity: 1;
+  outline: none;
 }
 
 .cta:hover {
+  background-color: #1ECD97;
   color: white;
+  border-color: #1ECD97;
 }
 
 .cta:active {
   transform: scale(0.96);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+
+/* Styles for the sending (disabled) state - KEPT */
+.cta:disabled {
+  pointer-events: none; /* Prevents clicks while sending */
+  background-image: linear-gradient(270deg, #f27ee1, #b79fd6, #f27ee1); /* Your original gradient colors */
+  background-size: 400% 100%; /* Makes the gradient wider than the button */
+  color: white; /* Ensures text is white on the gradient */
+  border-color: transparent; /* Hides the border to blend with gradient */
+  animation: loadingGradient 2s linear infinite; /* Applies the animation */
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition back */
+}
+
+/* Animation for the moving gradient - KEPT */
+@keyframes loadingGradient {
+  0% {
+    background-position: 100% 50%; /* Start gradient from the right */
+  }
+  100% {
+    background-position: 0% 50%; /* Move gradient to the left */
+  }
+}
+
+/* .cta.cta-success styling has been REMOVED as requested */
+
 
 footer {
   font-size: 0.9rem;
@@ -331,18 +343,6 @@ footer span {
   border-radius: 0.2rem;
 }
 
-@keyframes gradientBorder {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Archive Page Styles */
 .archive-page {
   padding: 2rem;
@@ -372,14 +372,14 @@ footer span {
 }
 
 .prompt-pill {
-  display: block; /* Make each pill take up a full line */
-  background-color: #6c567b; /* A nice purple color */
+  display: block;
+  background-color: #6c567b;
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
-  margin-bottom: 8px; /* Add some spacing between pills */
+  margin-bottom: 8px;
   font-size: 0.9em;
-  width: fit-content; /* Adjust width to content */
+  width: fit-content;
 }
 
 .keywords {
@@ -388,7 +388,7 @@ footer span {
 
 .keyword-tag {
   display: inline-block;
-  background-color: #a084ca; /* A lighter purple */
+  background-color: #a084ca;
   color: white;
   padding: 5px 8px;
   border-radius: 15px;
@@ -519,35 +519,33 @@ footer span {
   }
 
   .cta[disabled]::after {
-    content: '...'; /* This adds "..." after the button text */
-    display: inline-block; /* Allows the animation to affect the content */
-    animation: blink-ellipsis 1s infinite steps(3, start); /* Applies the animation */
+    content: '...';
+    display: inline-block;
+    animation: blink-ellipsis 1s infinite steps(3, start);
   }
-  
+
   @keyframes blink-ellipsis {
     to {
-      width: 1.5em; /* Adjusts the width as the dots appear */
+      width: 1.5em;
     }
   }
 
   @media (max-width: 768px) {
-    /* ... other mobile styles ... */
-
     footer {
       font-size: 0.8rem;
       opacity: 0.8;
-      text-align: center; /* Center the text within each item */
+      text-align: center;
       margin-top: 3rem;
-      display: flex; /* Triggering Vercel redeploy for analytics */
-      flex-direction: column; /* Stack the items vertically */
-      align-items: center; /* Center the items horizontally within the footer */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     footer a,
     footer span {
       margin-bottom: 0.5rem;
-      display: block; /* Make each item take up a full line */
-      width: 100%; /* Ensure they take full width to respect alignment */
+      display: block;
+      width: 100%;
       margin-left: 0 !important;
     }
   }
