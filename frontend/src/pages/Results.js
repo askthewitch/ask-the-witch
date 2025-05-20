@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, Link } from "react-router-dom"; // Added Link import
+import { useLocation, Link, useNavigate } from "react-router-dom"; // Added useNavigate
 import Layout from "../components/Layout";
 import "../style.css";
 
@@ -10,6 +10,7 @@ const serverUrl =
 
 function Results() {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const prompt = location.state?.prompt || "your idea";
   const checkboxRef = useRef(null);
 
@@ -88,7 +89,7 @@ function Results() {
             (tool) => `
               <li>
                 <strong>${tool.name}</strong><br/>
-                <em>${tool.oneliner}</em><br/>
+                <em>${tool.oneLiner}</em><br/>
                 <p><strong>Why:</strong> ${tool.why}</p>
                 <p>✅ <strong>Pros:</strong> ${tool.pros.join(", ")}</p>
                 <p>⚠️ <strong>Cons:</strong> ${tool.cons.join(", ")}</p>
@@ -136,6 +137,10 @@ function Results() {
         highlightCheckbox();
       }
     }
+  };
+
+  const handleStartAgain = () => {
+    navigate('/'); // Navigates back to the home page
   };
 
   console.log("Results component rendered");
@@ -204,6 +209,13 @@ function Results() {
             ) : (
               <p style={{ color: "limegreen" }}>✅ Sent!</p>
             )}
+            {/* New "Start Again" button added here */}
+            <button
+              className="cta"
+              onClick={handleStartAgain}
+            >
+              Start Again
+            </button>
           </div>
         </div>
       </div>
